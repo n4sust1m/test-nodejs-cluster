@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  app-front:
+    image: nginx
+    network_mode: bridge
+    ports:
+      - 80:80
+    volumes:
+      - ./app/dst:/usr/share/nginx/html
+      - /var/run/docker.sock:/tmp/docker.sock:ro # FIXME: win nativeだと不正かも
+  admin-front:
+    image: nginx
+    network_mode: bridge
+    ports:
+      - 8080:80
+    volumes:
+      - ./admin/dst:/usr/share/nginx/html
+      - /var/run/docker.sock:/tmp/docker.sock:ro # FIXME: win nativeだと不正かも
+  server:
+    image: nginx  # FIXME: 取り急ぎ
